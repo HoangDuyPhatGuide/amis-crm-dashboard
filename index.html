@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard theo dõi đơn hàng AMIS CRM" />
+    <title>AMIS CRM | Theo dõi đơn hàng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/fixes.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Điều hướng chính">
+        <a class="brand" href="#top" aria-label="AMIS CRM Dashboard">
+          <span class="brand-mark">A</span>
+          <span><strong>AMIS</strong><small>CRM INSIGHT</small></span>
+        </a>
+        <nav>
+          <a class="nav-item active" href="#top"><span>▦</span> Tổng quan</a>
+          <a class="nav-item" href="#orders"><span>▤</span> Đơn hàng</a>
+          <a class="nav-item" href="#quotes"><span>◈</span> Báo giá <b id="navQuoteBadge">0</b></a>
+          <a class="nav-item" href="#customers"><span>♙</span> Khách hàng</a>
+        </nav>
+        <div class="sidebar-footer">
+          <span class="sync-dot" id="connectionDot"></span>
+          <span id="connectionStatus">Đang dùng dữ liệu minh hoạ</span>
+          <button id="openSettings" class="link-button">Cấu hình kết nối</button>
+        </div>
+      </aside>
+
+      <main id="top" class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">TRUNG TÂM ĐIỀU HÀNH</p>
+            <h1>Theo dõi đơn hàng</h1>
+            <p class="subtitle" id="periodDescription">Đang tổng hợp dữ liệu hôm nay</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="button button-ghost" id="openSettingsTop">⚙ Kết nối AMIS</button>
+            <button class="button button-primary" id="refreshButton">↻ Làm mới dữ liệu</button>
+          </div>
+        </header>
+
+        <section class="filter-panel" aria-label="Bộ lọc thời gian">
+          <div class="preset-group" role="group" aria-label="Khoảng thời gian nhanh">
+            <button class="preset active" data-preset="today">Hôm nay</button>
+            <button class="preset" data-preset="week">Tuần này</button>
+            <button class="preset" data-preset="month">Tháng này</button>
+            <button class="preset" data-preset="year">Năm nay</button>
+            <button class="preset" data-preset="custom">Tuỳ chỉnh</button>
+          </div>
+          <div class="custom-dates" id="customDates" hidden>
+            <label>Từ ngày <input type="date" id="startDate" /></label>
+            <label>Đến ngày <input type="date" id="endDate" /></label>
+            <button class="button button-small" id="applyCustom">Áp dụng</button>
+          </div>
+          <p class="updated-at" id="updatedAt">—</p>
+        </section>
+
+        <section class="metric-grid" aria-label="Chỉ số chính">
+          <article class="metric-card accent-blue">
+            <div class="metric-icon">▤</div>
+            <p>Đơn hàng trong kỳ</p>
+            <strong id="orderCount">0</strong>
+            <span id="orderValue">0 ₫</span>
+          </article>
+          <article class="metric-card accent-green">
+            <div class="metric-icon">₫</div>
+            <p>Giá trị đơn hàng</p>
+            <strong id="revenueValue">0 ₫</strong>
+            <span id="revenueDetail">Đã ghi nhận trong kỳ</span>
+          </article>
+          <article class="metric-card accent-orange">
+            <div class="metric-icon">!</div>
+            <p>Báo giá cần xử lý</p>
+            <strong id="quoteCount">0</strong>
+            <span id="quoteValue">Trên 7.000.000 ₫, chưa sinh đơn</span>
+          </article>
+          <article class="metric-card accent-purple">
+            <div class="metric-icon">♙</div>
+            <p>Khách lâu chưa mua</p>
+            <strong id="staleCustomerCount">0</strong>
+            <span id="staleCustomerRule">Từ 60 ngày trở lên</span>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div><h2>Diễn biến đơn hàng</h2><p>Số đơn và doanh thu theo ngày</p></div>
+              <span class="legend"><i></i> Doanh thu</span>
+            </div>
+            <div id="chart" class="chart" aria-label="Biểu đồ doanh thu theo ngày"></div>
+          </article>
+          <article class="panel priorities-panel">
+            <div class="panel-heading"><div><h2>Việc cần ưu tiên</h2><p>Đề xuất theo dữ liệu đang xem</p></div></div>
+            <ul id="priorityList" class="priority-list"></ul>
+          </article>
+        </section>
+
+        <section id="orders" class="panel table-panel">
+          <div class="panel-heading"><div><h2>Đơn hàng trọng điểm</h2><p>Những đơn có giá trị cao nhất trong khoảng thời gian đã chọn</p></div><span id="orderTableCount" class="count-label">0 đơn</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Mã đơn</th><th>Khách hàng</th><th>Ngày đơn</th><th>Nhân viên</th><th>Trạng thái</th><th class="align-right">Giá trị</th></tr></thead><tbody id="ordersTable"></tbody></table></div>
+        </section>
+
+        <section id="quotes" class="panel table-panel alert-panel">
+          <div class="panel-heading"><div><h2>🚨 Báo giá trên 7 triệu chưa chốt</h2><p>Chưa có dấu hiệu “Sinh đơn hàng” liên kết với báo giá</p></div><span id="quoteTableCount" class="count-label warning">0 báo giá</span></div>
+          <div id="quoteDataNotice" class="data-notice" hidden></div>
+          <div class="table-wrap"><table><thead><tr><th>Mã báo giá</th><th>Khách hàng</th><th>Ngày báo giá</th><th>Nhân viên</th><th>Tuổi báo giá</th><th class="align-right">Giá trị</th><th></th></tr></thead><tbody id="quotesTable"></tbody></table></div>
+        </section>
+
+        <section id="customers" class="panel table-panel">
+          <div class="panel-heading"><div><h2>Khách hàng lâu chưa mua</h2><p>Ưu tiên liên hệ lại các khách đã quá lâu không phát sinh đơn</p></div><span id="customerTableCount" class="count-label muted">0 khách</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Khách hàng</th><th>Điện thoại</th><th>Nhân viên phụ trách</th><th>Lần mua gần nhất</th><th>Số ngày chưa mua</th><th class="align-right">Tổng đã mua</th></tr></thead><tbody id="customersTable"></tbody></table></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="settingsDialog" class="settings-dialog">
+      <form method="dialog" id="settingsForm">
+        <div class="dialog-heading"><div><p class="eyebrow">KẾT NỐI AN TOÀN</p><h2>Thiết lập AMIS CRM</h2></div><button value="cancel" class="icon-button" aria-label="Đóng">×</button></div>
+        <p class="dialog-intro">Website GitHub Pages không lưu Mã bảo mật AMIS. Hãy nhập URL máy chủ trung gian đã triển khai; máy chủ này mới giữ <code>Clientid</code> và Bearer token.</p>
+        <label class="field-label">URL máy chủ trung gian
+          <input id="proxyUrl" type="url" placeholder="https://amis-dashboard-api.example.workers.dev" autocomplete="url" />
+        </label>
+        <label class="check-row"><input id="demoMode" type="checkbox" checked /> Dùng dữ liệu minh hoạ trên website này</label>
+        <div class="dialog-actions"><button value="cancel" class="button button-ghost">Huỷ</button><button id="saveSettings" value="default" class="button button-primary">Lưu và tải dữ liệu</button></div>
+        <p class="help-text">Máy chủ cần có endpoint <code>GET /api/dashboard?from=YYYY-MM-DD&amp;to=YYYY-MM-DD</code>. Xem hướng dẫn triển khai trong README.</p>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "fetchedAt": "2026-10-06T09:30:00+07:00",
+  "quoteSourceConfigured": true,
+  "orders": [
+    {"code":"DH-20261006-01","customerName":"Công ty TNHH Minh Phát","orderDate":"2026-10-06","ownerName":"Nguyễn Thu Hà","amount":24500000,"status":"Đã ghi nhận","quoteCode":"BG-20261001-01"},
+    {"code":"DH-20261006-02","customerName":"Nhà thuốc An Khang","orderDate":"2026-10-06","ownerName":"Trần Quốc Huy","amount":12800000,"status":"Đang xử lý"},
+    {"code":"DH-20261005-03","customerName":"Công ty An Phú","orderDate":"2026-10-05","ownerName":"Nguyễn Thu Hà","amount":36200000,"status":"Đã hoàn thành"},
+    {"code":"DH-20261003-06","customerName":"Hộ kinh doanh Hoàng Gia","orderDate":"2026-10-03","ownerName":"Phạm Minh Đức","amount":8900000,"status":"Đã ghi nhận"},
+    {"code":"DH-20261001-09","customerName":"Cửa hàng Tân Phú","orderDate":"2026-10-01","ownerName":"Trần Quốc Huy","amount":15600000,"status":"Đã hoàn thành"},
+    {"code":"DH-20260925-18","customerName":"Công ty Sao Mai","orderDate":"2026-09-25","ownerName":"Nguyễn Thu Hà","amount":18700000,"status":"Đã hoàn thành"}
+  ],
+  "quotes": [
+    {"code":"BG-20261001-01","customerName":"Công ty TNHH Minh Phát","quoteDate":"2026-10-01","ownerName":"Nguyễn Thu Hà","amount":24500000,"orderId":"DH-20261006-01","status":"Đã sinh đơn"},
+    {"code":"BG-20261005-07","customerName":"Công ty Thành Công","quoteDate":"2026-10-05","ownerName":"Nguyễn Thu Hà","amount":18750000,"status":"Đã gửi"},
+    {"code":"BG-20261002-12","customerName":"Công ty Phú Thịnh","quoteDate":"2026-10-02","ownerName":"Trần Quốc Huy","amount":12400000,"status":"Đã gửi"},
+    {"code":"BG-20260928-19","customerName":"Đại lý Hồng Phát","quoteDate":"2026-09-28","ownerName":"Phạm Minh Đức","amount":9700000,"status":"Chờ phản hồi"},
+    {"code":"BG-20261006-03","customerName":"Cửa hàng Nam Việt","quoteDate":"2026-10-06","ownerName":"Trần Quốc Huy","amount":6800000,"status":"Đã gửi"}
+  ],
+  "customers": [
+    {"name":"Công ty Thành Công","phone":"0903 245 868","ownerName":"Nguyễn Thu Hà","lastPurchaseDate":"2026-06-22","totalPurchased":84600000},
+    {"name":"Công ty Phú Thịnh","phone":"0938 620 114","ownerName":"Trần Quốc Huy","lastPurchaseDate":"2026-07-10","totalPurchased":53700000},
+    {"name":"Đại lý Hồng Phát","phone":"0918 117 629","ownerName":"Phạm Minh Đức","lastPurchaseDate":"2026-05-16","totalPurchased":42100000},
+    {"name":"Cửa hàng Nam Việt","phone":"0908 552 291","ownerName":"Trần Quốc Huy","lastPurchaseDate":"2026-08-01","totalPurchased":27900000},
+    {"name":"Công ty TNHH Minh Phát","phone":"0901 888 336","ownerName":"Nguyễn Thu Hà","lastPurchaseDate":"2026-10-06","totalPurchased":112500000},
+    {"name":"Công ty An Phú","phone":"028 3771 2368","ownerName":"Nguyễn Thu Hà","lastPurchaseDate":"2026-10-05","totalPurchased":96300000}
+  ]
+}
